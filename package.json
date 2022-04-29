@@ -1,0 +1,19 @@
+{
+  "name": "index.js",
+  "version": "1.0.0",
+  "description": "Trabajo web full stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JesusManuelGarcia/Backend.git"
+  },
+  "author": "Jesus Manuel Garcia Rios",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JesusManuelGarcia/Backend/issues"
+  },
+  "homepage": "https://github.com/JesusManuelGarcia/Backend#readme"
+}
