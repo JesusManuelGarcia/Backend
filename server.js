@@ -9,7 +9,6 @@ http.createServer(function(request, response){
     if (filePath == './'){
         filePath = './index.html';
     }
-})
 var extname = String(path.extname(filePath)).toLowerCase();
 var contentType = 'text/html';
 var mineTypes = {
@@ -21,6 +20,9 @@ var mineTypes = {
     '.jpg': 'image/jpg',
     '.gif': 'image/gif',
 };
+
+contentType = mineTypes[extname] || 'application/octet-stream';
+
 fs.readFile(filePath, function(error, content){
     if (error){
         if(error.code == 'ENDENT'){
@@ -31,7 +33,7 @@ fs.readFile(filePath, function(error, content){
         }
         else {
             response.writeHead(500);
-            response.end('Sorry, check with the site admin for error:');
+            response.end('Sorry, check with the site admin for error:'+error.code);
             response.end();
         }
     }
@@ -40,5 +42,6 @@ fs.readFile(filePath, function(error, content){
         response.end(content, 'utf-8');
     }
 });
-//}).listen(3000);
-//console.log('server running at http://127.0.0.1:3000/');
+
+}),listen(3000);
+console.log('Server running at http://192.168.50.23:3000/');
