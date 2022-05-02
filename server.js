@@ -3,7 +3,7 @@ var fs = require ('fs');
 var path = require ('path');
 
 http.createServer(function(request, response){
-    console.log('request', request,url);
+    console.log('request', request.url);
 
     var filePath = '.' + request.url;
     if (filePath == './'){
@@ -11,7 +11,7 @@ http.createServer(function(request, response){
     }
 var extname = String(path.extname(filePath)).toLowerCase();
 var contentType = 'text/html';
-var mineTypes = {
+var mimeTypes = {
     '.html': 'text/html',
     '.js': 'text/javascript',
     '.css': 'text/css',
@@ -21,11 +21,11 @@ var mineTypes = {
     '.gif': 'image/gif',
 };
 
-contentType = mineTypes[extname] || 'application/octet-stream';
+contentType = mimeTypes[extname] || 'application/octet-stream';
 
 fs.readFile(filePath, function(error, content){
     if (error){
-        if(error.code == 'ENDENT'){
+        if(error.code == 'ENOENT'){
             fs.readFile('./404.html', function(error, content){
                 response.writeHead(200, {'Content-Type': contentType});
                 response.end(content, 'utf-8');
@@ -33,7 +33,7 @@ fs.readFile(filePath, function(error, content){
         }
         else {
             response.writeHead(500);
-            response.end('Sorry, check with the site admin for error:'+error.code);
+            response.end('Sorry, check with the site admin for error:'+error.code+'..\n');
             response.end();
         }
     }
@@ -43,5 +43,5 @@ fs.readFile(filePath, function(error, content){
     }
 });
 
-}),listen(3000);
-console.log('Server running at http://192.168.50.23:3000/');
+}).listen(3000);
+console.log('Server running at http://127.0.0.1:3000/');

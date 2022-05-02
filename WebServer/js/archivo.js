@@ -1,2 +1,2 @@
 const mensaje = document.querySelector('h1');
-mensaje.textContent = 'Hola Mundo';
+mensaje.textContent = "Hola Mundo";
